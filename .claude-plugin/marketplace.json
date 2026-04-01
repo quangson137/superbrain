@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "superbrain",
-      "source": ".",
+      "source": "./",
       "description": "A collection of creative and productivity skills including brainstorming and brand voice tools",
       "version": "1.0.0",
       "author": {
