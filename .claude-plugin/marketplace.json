@@ -1,0 +1,22 @@
+{
+  "name": "superbrain",
+  "owner": {
+    "name": "Son Pham"
+  },
+  "metadata": {
+    "description": "A collection of creative and productivity skills including brainstorming and brand voice tools",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "superbrain",
+      "source": ".",
+      "description": "A collection of creative and productivity skills including brainstorming and brand voice tools",
+      "version": "1.0.0",
+      "author": {
+        "name": "Son Pham"
+      },
+      "keywords": ["brainstorming", "brand-voice", "productivity", "creative"]
+    }
+  ]
+}
