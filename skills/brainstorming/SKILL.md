@@ -28,8 +28,6 @@ You MUST create a task for each of these items and complete them in order:
 5. **Present design** — in sections scaled to their complexity, get user approval after each section
 6. **Write design doc** — save to `docs/agent-docs/specs/YYYY-MM-DD-<topic>-design.md` and commit
 7. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
-8. **User reviews written spec** — ask user to review the spec file before proceeding
-9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
 
 ## Process Flow
 
@@ -44,8 +42,6 @@ flowchart TD
     G{"User approves design?"}
     H["Write design doc"]
     I["Spec self-review<br/>(fix inline)"]
-    J{"User reviews spec?"}
-    K(("Invoke writing-plans skill"))
 
     A --> B
     B -- yes --> C
@@ -57,12 +53,9 @@ flowchart TD
     G -- "no, revise" --> F
     G -- yes --> H
     H --> I
-    I --> J
-    J -- "changes requested" --> H
-    J -- approved --> K
 ```
 
-**The terminal state is invoking writing-plans.** Do NOT invoke frontend-design, mcp-builder, or any other implementation skill. The ONLY skill you invoke after brainstorming is writing-plans.
+**The terminal state is the spec self-review.** After the self-review is complete, the brainstorming process is done.
 
 ## The Process
 
@@ -121,17 +114,9 @@ After writing the spec document, look at it with fresh eyes:
 
 Fix any issues inline. No need to re-review — just fix and move on.
 
-**User Review Gate:**
-After the spec review loop passes, ask the user to review the written spec before proceeding:
+After the self-review, notify the user that the spec is complete:
 
-> "Spec written and committed to `<path>`. Please review it and let me know if you want to make any changes before we start writing out the implementation plan."
-
-Wait for the user's response. If they request changes, make them and re-run the spec review loop. Only proceed once the user approves.
-
-**Implementation:**
-
-- Invoke the writing-plans skill to create a detailed implementation plan
-- Do NOT invoke any other skill. writing-plans is the next step.
+> "Spec written and committed to `<path>`. The brainstorming process is complete."
 
 ## Key Principles
 
