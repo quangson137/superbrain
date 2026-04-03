@@ -2,6 +2,7 @@
 name: executing-plans
 description: Use when you have a written implementation plan to execute. Loads the plan, reviews it critically, then executes all tasks with verification checkpoints.
 argument-hint: Plan file from writing-plans step
+model: sonnet
 ---
 
 # Executing Plans

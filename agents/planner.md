@@ -2,9 +2,6 @@
 name: planner
 description: Expert planning specialist for complex features and refactoring. Use PROACTIVELY when users request feature planning, architectural changes, or complex refactoring. Automatically activated for planning tasks.
 model: opus
-skills:
-  - brainstorming
-  - writing-plans
 memory: project
 ---
 
