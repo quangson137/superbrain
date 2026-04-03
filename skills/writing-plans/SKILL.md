@@ -23,6 +23,7 @@ You MUST complete these steps in order:
 6. **Write tasks** — break down into bite-sized TDD tasks with full code
 7. **Self-review** — check spec coverage, placeholders, type consistency
 8. **Save plan** — write to `docs/agent-docs/plans/YYYY-MM-DD-<feature-name>.md`
+9. **Update spec** — mark this plan as `[x]` with file path in the spec's `## Implementation Plans` section
 
 ## Process Flow
 
@@ -54,9 +55,10 @@ flowchart TD
     I -- yes --> J
     J --> H
     I -- no --> K
+    K --> L["Update spec"]
 ```
 
-**The terminal state is the saved plan.** After saving, notify the user and stop.
+**The terminal state is the saved plan + updated spec.** After saving and updating the spec, notify the user and stop.
 
 ## The Process
 
@@ -197,8 +199,31 @@ Every step must contain the actual content an engineer needs. These are **plan f
 - **Exact commands with expected output** — engineer should know what success looks like
 - **DRY, YAGNI, TDD** — no unnecessary features, no repeated logic, tests first
 
+## Updating the Spec
+
+After saving the plan, update the spec file to track progress across all plans.
+
+**Locate or create the `## Implementation Plans` section** at the bottom of the spec file. If it doesn't exist, add it.
+
+**Format:**
+
+```markdown
+## Implementation Plans
+
+- [x] **Plan 1: <Title>** — <one-line summary>
+  - `docs/agent-docs/plans/YYYY-MM-DD-<feature-name>.md`
+- [ ] **Plan 2: <Title>** — <one-line summary>
+- [ ] **Plan 3: <Title>** — <one-line summary>
+```
+
+**Rules:**
+- Mark the just-saved plan as `[x]` and include its file path on the next line (indented with 2 spaces).
+- Plans not yet created stay as `[ ]` with no file path.
+- If the section already exists, update the matching entry in-place — do not duplicate.
+- If this is the first plan from a multi-plan spec, list all planned plans as `[ ]` first, then mark this one `[x]`.
+
 ## Completion
 
-After saving the plan, notify the user:
+After saving the plan and updating the spec, notify the user:
 
-> "Plan complete and saved to `docs/agent-docs/plans/<filename>.md`."
+> "Plan complete and saved to `docs/agent-docs/plans/<filename>.md`. Spec updated."

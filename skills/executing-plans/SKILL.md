@@ -50,7 +50,8 @@ flowchart TD
     G --> H
     H -- "fails repeatedly" --> I
     I --> F
-    H -- passes --> J
+    H -- passes --> M["Mark step [x] in plan file"]
+    M --> J
     J -- yes --> F
     J -- no --> K
 ```
@@ -104,6 +105,7 @@ If you find a blocking issue, raise it with the user. If the issue is minor and 
 - Run every verification command specified; don't skip them.
 - If a step references another skill, invoke it.
 - Don't fix adjacent problems you notice — stay focused on the current task. Note issues to raise at the end.
+- **After each step passes verification, update the plan file immediately:** change `- [ ]` to `- [x]` for that step. This keeps the plan file as a live record of progress.
 
 ## When to Stop and Ask
 
