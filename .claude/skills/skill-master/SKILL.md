@@ -44,6 +44,25 @@ The user can choose any mode, or combine them (create → review, review → fix
 
 ### PHASE 0 — CREATE (only runs when mode is `create`)
 
+```mermaid
+flowchart TD
+    A["Capture Intent<br/>(4 core questions)"]
+    B{"Intent clear?"}
+    C["Interview & Research<br/>(edge cases, MCPs, tools)"]
+    D["Write SKILL.md<br/>(9-layer standard)"]
+    E["CSO Check<br/>(triggers only, no workflow summary)"]
+    F["Generate Examples<br/>(good + anti-example)"]
+    G["Self-Review<br/>(run PHASE 1)"]
+
+    A --> B
+    B -- "unclear" --> C
+    C --> B
+    B -- "confirmed" --> D
+    D --> E
+    E --> F
+    F --> G
+```
+
 **Step 1: Capture Intent**
 - If the conversation already contains a concrete workflow → extract it first, then confirm with user
 - Ask 4 core questions (only ask what isn't already clear):
@@ -71,6 +90,7 @@ The user can choose any mode, or combine them (create → review, review → fix
 - SKILL.md < 500 lines; knowledge blocks > 30 lines → move to references/
 - Use imperative form for instructions ("Read...", "Check...", "Output...")
 - Explain WHY behind important rules instead of just using MUST/NEVER
+- **Add a Mermaid `flowchart TD` diagram in the WORKFLOW section** showing the skill's process flow — place it right after the section heading, before the step-by-step instructions. Model it after `brainstorming` and `writing-plans` skills.
 
 *Layer 7 — Output Contract:*
 - Clearly define output structure, PASS criteria, and a FINAL CHECK of 5–7 items
@@ -95,6 +115,26 @@ The user can choose any mode, or combine them (create → review, review → fix
 
 ### PHASE 1 — REVIEW (always runs before FIX)
 
+```mermaid
+flowchart TD
+    A["Survey structure<br/>(list files & folders)"]
+    B["Read 9-layer-checklist.md"]
+    C["Check each Layer (0→8)"]
+    D["Score 6 axes<br/>(scoring-rubric.md)"]
+    E["Output Review Report"]
+    F{"Fix mode?"}
+    G["→ PHASE 2: FIX"]
+    H["Done"]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F -- "yes" --> G
+    F -- "no" --> H
+```
+
 **Step 1: Survey the structure**
 - Read the full skill directory (view directory tree)
 - List all files and folders
@@ -116,7 +156,7 @@ The user can choose any mode, or combine them (create → review, review → fix
 |-------|------|---------------|
 | 0 | Use Case & Trigger Map | What the skill solves, for whom, positive/negative triggers |
 | 1 | Metadata | YAML frontmatter: name, description, version |
-| 2 | SKILL.md Body | All 8 sections present? Under 500 lines? Clear workflow? |
+| 2 | SKILL.md Body | All 8 sections present? Under 500 lines? Clear workflow? Mermaid diagram in WORKFLOW section? |
 | 3 | References | Directory exists? SKILL.md specifies when to read each file? |
 | 4 | Examples | ≥1 good example + ≥1 anti-example? |
 | 5 | Scripts | Automation scripts present if needed? |
@@ -131,6 +171,20 @@ The user can choose any mode, or combine them (create → review, review → fix
 ---
 
 ### PHASE 2 — FIX (only runs when mode is `fix` or `review+fix`)
+
+```mermaid
+flowchart TD
+    A["Fix Layer 1<br/>(Metadata — highest priority)"]
+    B["Fix Layer 2<br/>(SKILL.md Body — 8 sections)"]
+    C["Fix Layer 7<br/>(Output Contract)"]
+    D["Fix Layer 4<br/>(Examples)"]
+    E["Fix Layer 3<br/>(References)"]
+    F["Fix Layers 0, 5, 6, 8<br/>(as appropriate)"]
+    G["Compile changelog<br/>(bump minor version)"]
+    H["Re-review & compare<br/>(before/after score)"]
+
+    A --> B --> C --> D --> E --> F --> G --> H
+```
 
 **Fix Principles:**
 - PRESERVE the original domain content — only restructure and supplement
@@ -160,6 +214,7 @@ Priority order (most critical first):
      6. RESOURCE USAGE (when to read which file)
      7. GUARDRAILS (restrictions, limits)
      8. FINAL CHECK (self-check checklist, 5–7 items)
+   - **Add a Mermaid `flowchart TD` diagram in section 4 (WORKFLOW)** if missing — place it right after the section heading, before step-by-step instructions
    - If original content is too long → move knowledge sections to references/
 
 3. **Fix Layer 7 — Output Contract**
