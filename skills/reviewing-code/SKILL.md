@@ -10,7 +10,7 @@ description: >
   specific runtime error, or writing/generating new code.
 argument-hint: PR number, file path(s), git diff, or branch name to review
 model: opus
-version: 1.2.0
+version: 1.4.0
 ---
 
 # Code Review
@@ -48,6 +48,33 @@ Review code thoroughly across quality, security, performance, and correctness di
 
 ## 4. WORKFLOW
 
+```mermaid
+flowchart TD
+    A["Step 1: Understand context<br/>(PR / files / branch / diff)"]
+    B["Step 2: Read project tech docs<br/>(CLAUDE.md → TECHNICAL_DOCS_DIRS)"]
+    C{"Plan doc exists?"}
+    D["Step 2b: Plan alignment check<br/>(docs/agent-docs/plans/)"]
+    E["Step 3: Architecture review"]
+    F["Step 4: Code inspection<br/>(naming, structure, anti-patterns)"]
+    G["Step 5: Security audit<br/>(never skip)"]
+    H["Step 6: Performance analysis"]
+    I["Step 7: Testing validation"]
+    J["Step 8: Documentation review"]
+    K["Step 9: Write & save report<br/>(docs/agent-docs/reviews/)"]
+
+    A --> B
+    B --> C
+    C -- "yes" --> D
+    C -- "no" --> E
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+```
+
 Complete these steps in order:
 
 **Step 1 — Understand context:**
@@ -58,7 +85,7 @@ Complete these steps in order:
 - Read the PR description or commit message — understanding intent is essential to a good review
 
 **Step 2 — Read project technical docs:**
-Check `CLAUDE.md` for the `TECHNICAL_DOCS_DIRS` variable — it lists architecture docs, coding standards, and conventions. Read those files before proceeding. This ensures the review judges code against the project's actual standards, not generic assumptions. If `TECHNICAL_DOCS_DIRS` is not defined, skip this step.
+Check `CLAUDE.md` for a `## Document Map` section — it lists paths to architecture docs, coding standards, and conventions. Read the files listed there before proceeding. This ensures the review judges code against the project's actual standards, not generic assumptions. If the section is absent, skip this step.
 
 **Step 2b — Plan alignment check (if applicable):**
 Check `docs/agent-docs/plans/` for a plan document matching this feature or PR. If found, read it and note whether the implementation matches the plan's requirements, architecture decisions, and scope. Distinguish between:
@@ -216,7 +243,7 @@ Every report MUST use this structure:
 
 ## 6. RESOURCE USAGE
 
-- **`CLAUDE.md`** (`TECHNICAL_DOCS_DIRS`): Read in Step 2 to locate project-specific coding standards
+- **`CLAUDE.md`** (`## Document Map` section): Read in Step 2 to locate project-specific coding standards
 - **Surrounding modules**: Read in Step 1 to understand conventions before judging consistency
 - **`examples/good-example.md`**: Reference for what a well-structured review looks like
 - **`examples/anti-example.md`**: Reference for patterns to avoid in reviews
@@ -237,7 +264,7 @@ Every report MUST use this structure:
 Before delivering the review, verify:
 
 ☐ Loaded the full code (PR diff / files / branch) before starting?
-☐ Checked `CLAUDE.md` for project coding standards (or confirmed it's absent)?
+☐ Checked `CLAUDE.md` for `## Document Map` section and read listed docs (or confirmed absent)?
 ☐ Checked `docs/agent-docs/plans/` for a matching plan doc and noted deviations?
 ☐ Completed all 7 review dimensions (architecture → documentation)?
 ☐ Every finding has file:line + "why it matters" + concrete fix?
