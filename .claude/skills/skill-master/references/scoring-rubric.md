@@ -1,13 +1,13 @@
-# Scoring Rubric — 6-Axis Evaluation
+# Scoring Rubric — 5-Axis Evaluation
 
-Each axis scored 1–5. Maximum total: 30.
+Each axis scored 1–5. Maximum total: 25.
 
 | Total | Level |
 |-------|-------|
-| 0–12 | Failing — needs to be rebuilt |
-| 13–18 | Basic — usable but unstable |
-| 19–24 | Good — needs a few more layers |
-| 25–30 | Mature — ready for team use |
+| 0–10 | Failing — needs to be rebuilt |
+| 11–15 | Basic — usable but unstable |
+| 16–20 | Good — needs a few more layers |
+| 21–25 | Mature — ready for team use |
 
 ## 1. Strategy (Layer 0)
 1: No clear purpose | 3: Clear use case, user unclear | 5: Full trigger map
@@ -23,6 +23,3 @@ Each axis scored 1–5. Maximum total: 30.
 
 ## 5. Resources (Layers 3–6)
 1: No resources | 3: Basic references + examples | 5: All 4 types present, examples annotated
-
-## 6. Governance (Layer 8)
-1: No version | 3: Version + owner | 5: Full governance + metrics

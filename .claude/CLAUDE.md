@@ -55,17 +55,14 @@ All skills in this project follow the **9-Layer Skill Engineering Framework**. T
 | 5 | Scripts | Automation scripts if needed |
 | 6 | Assets | Templates, prompts, companion files |
 | 7 | Output contract | Explicit definition of deliverables |
-| 8 | Governance | Version, ownership, changelog |
-
-### Quality Scoring (6 axes × 5 points = 30 max)
+### Quality Scoring (5 axes × 5 points = 25 max)
 - **Strategy** — purpose clarity and use-case specificity
 - **Activation** — trigger phrase quality (CSO formula)
 - **Operation** — workflow completeness and decision logic
 - **Quality** — self-check and output contract
 - **Resources** — references and examples
-- **Governance** — versioning and changelog
 
-Score interpretation: 0–12 Failing → 13–18 Basic → 19–24 Good → 25–30 Mature
+Score interpretation: 0–10 Failing → 11–15 Basic → 16–20 Good → 21–25 Mature
 
 ### Metadata Description Formula (CSO)
 Skill descriptions must use trigger phrases, NOT workflow summaries:

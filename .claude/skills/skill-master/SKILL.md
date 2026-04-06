@@ -83,7 +83,7 @@ flowchart TD
 - Description starts with `Use this skill when...`, lists positive + negative triggers
 - **Do NOT summarize workflow in description** — only describe when to use (CSO rule)
 - Be slightly "pushy": list more trigger scenarios than the minimum to avoid undertriggering
-- name: letters, numbers, hyphens only; version: 1.0.0
+- name: letters, numbers, hyphens only
 
 *Layer 2 — SKILL.md Body:*
 - Write all 8 sections (PURPOSE → FINAL CHECK) per the standard
@@ -162,7 +162,6 @@ flowchart TD
 | 5 | Scripts | Automation scripts present if needed? |
 | 6 | Assets | Templates separated from references? |
 | 7 | Output Contract | Output format + pass criteria + self-check present? |
-| 8 | Governance | Version, owner, changelog? |
 
 **Step 4: Score 6 axes** — read references/scoring-rubric.md
 
@@ -232,17 +231,13 @@ Priority order (most critical first):
    - If SKILL.md has long knowledge blocks (>30 lines) → move to references/
    - Add Resource Usage section specifying when to read each file
 
-6. **Fix Layers 0, 5, 6, 8** — add as appropriate for the skill type
+6. **Fix Layers 0, 5, 6** — add as appropriate for the skill type
 
-**Step 7: Compile changelog**
-- List all changes made
-- Record new version (bump minor version)
-
-**Step 8: Output fixed skill**
+**Step 7: Output fixed skill**
 - Present files to the user
 
-**Step 9: Quick re-review on the fixed skill**
-- Re-score 6 axes
+**Step 8: Quick re-review on the fixed skill**
+- Re-score 5 axes
 - Compare before/after
 - Output comparison table
 
@@ -263,7 +258,7 @@ Priority order (most critical first):
 - references/ (if any)
 
 ## Quick review after creation
-- Score: X/30 — [level]
+- Score: X/25 — [level]
 - Gaps to note: ...
 ```
 
@@ -273,8 +268,8 @@ Priority order (most critical first):
 # 📋 REVIEW REPORT: [skill name]
 
 ## Overview
-- Name: ... | Version: ... | File count: ...
-- Score: X/30 — [Failing | Basic | Good | Mature]
+- Name: ... | File count: ...
+- Score: X/25 — [Failing | Basic | Good | Mature]
 
 ## Layer-by-layer assessment
 | Layer | Name | Status | Notes |
@@ -282,7 +277,7 @@ Priority order (most critical first):
 | 0 | Use Case | ✅/⚠️/❌ | ... |
 | ... | ... | ... | ... |
 
-## 6-axis score
+## 5-axis score
 | Axis | Score (1–5) | Notes |
 |------|-------------|-------|
 
@@ -336,13 +331,12 @@ Priority order (most critical first):
 ☐ Create: Description starts with "Use this skill when..." and contains no workflow summary?
 ☐ Create: SKILL.md has all 8 sections and is < 500 lines?
 ☐ Create: Generated at least 1 good example + 1 anti-example?
-☐ Create: Self-reviewed and scored 6 axes?
-☐ Review: Checked all 9 layers?
+☐ Create: Self-reviewed and scored 5 axes?
+☐ Review: Checked all layers (0–7)?
 ☐ Review: Each layer has a clear status (✅/⚠️/❌)?
-☐ Review: Scored 6 axes with notes?
+☐ Review: Scored 5 axes with notes?
 ☐ Review: Top 3–5 specific, prioritized recommendations?
 ☐ Fix: Preserved original domain content?
 ☐ Fix: Restructured SKILL.md into all 8 sections?
 ☐ Fix: Created examples if missing?
-☐ Fix: Recorded changelog and bumped version?
 ☐ Fix: Re-ran review and compared before/after?

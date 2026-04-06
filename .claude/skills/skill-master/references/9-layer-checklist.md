@@ -11,7 +11,6 @@
 - [ ] `description` is specific, uses real user language
 - [ ] Trigger phrases present (both Vietnamese and English if needed)
 - [ ] Negative trigger present (Do NOT use for...)
-- [ ] `version` present
 - [ ] Description is 50–100 words total
 
 ## Layer 2 — Core SKILL.md
@@ -48,8 +47,3 @@
 - [ ] Output structure is defined
 - [ ] PASS / NEEDS WORK / FAILING criteria present
 - [ ] Self-check checklist of 5–7 items
-
-## Layer 8 — Governance
-- [ ] Version number present
-- [ ] Recommended: owner, changelog
-- [ ] For personal skills: version alone is sufficient
