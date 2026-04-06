@@ -10,7 +10,7 @@ description: >
   specific runtime error, or writing/generating new code.
 argument-hint: PR number, file path(s), git diff, or branch name to review
 model: opus
-version: 1.1.0
+version: 1.2.0
 ---
 
 # Code Review
@@ -59,6 +59,11 @@ Complete these steps in order:
 
 **Step 2 — Read project technical docs:**
 Check `CLAUDE.md` for the `TECHNICAL_DOCS_DIRS` variable — it lists architecture docs, coding standards, and conventions. Read those files before proceeding. This ensures the review judges code against the project's actual standards, not generic assumptions. If `TECHNICAL_DOCS_DIRS` is not defined, skip this step.
+
+**Step 2b — Plan alignment check (if applicable):**
+Check `docs/agent-docs/plans/` for a plan document matching this feature or PR. If found, read it and note whether the implementation matches the plan's requirements, architecture decisions, and scope. Distinguish between:
+- **Justified deviations** — implementation improved on the plan for good technical reasons (note these as observations)
+- **Problematic deviations** — missing planned functionality, scope creep, or architectural drift (flag these as 🟡 Important findings)
 
 **Step 3 — Architecture review:**
 - Does the approach fit the existing patterns in the codebase?
@@ -110,6 +115,8 @@ Check `CLAUDE.md` for the `TECHNICAL_DOCS_DIRS` variable — it lists architectu
 - Are tests readable — does the test name describe what behavior it verifies?
 - Are tests deterministic (no reliance on time, random values, or external state without mocking)?
 - Is test coverage proportional to the risk of the code being changed?
+- Does the implementation stay within the planned scope — no unplanned features added?
+- Are breaking changes (API, schema, interface) explicitly documented?
 
 **Step 8 — Documentation review:**
 - Does complex logic have an explanatory comment (not just restating what the code does)?
@@ -146,17 +153,17 @@ Every report MUST use this structure:
 ### 🔴 Critical — Must Fix
 > Security vulnerabilities, data loss risks, broken functionality
 
-- [ ] [File:line] **[Issue title]** — [explanation + suggested fix]
+- [ ] [File:line] **[Issue title]** — [what's wrong] · [why it matters] · [how to fix]
 
 ### 🟡 Important — Should Fix
 > Performance problems, poor error handling, significant maintainability issues
 
-- [ ] [File:line] **[Issue title]** — [explanation + suggested fix]
+- [ ] [File:line] **[Issue title]** — [what's wrong] · [why it matters] · [how to fix]
 
 ### 🟢 Nice-to-Have — Consider
 > Style, naming, minor improvements, refactoring suggestions
 
-- [ ] [File:line] **[Issue title]** — [explanation + suggested fix]
+- [ ] [File:line] **[Issue title]** — [what's wrong] · [why it matters] · [how to fix]
 
 ---
 
@@ -184,21 +191,27 @@ Every report MUST use this structure:
 - [ ] Tests cover new/changed logic
 - [ ] Documentation is updated
 
+## Production Readiness
+
+- [ ] Schema migrations present and reversible (if DB changes)
+- [ ] Backward compatibility maintained, or breaking changes documented
+- [ ] No hardcoded environment-specific values (URLs, credentials, ports)
+
 ---
 
 ## Verdict
 
-**Approve / Request Changes / Needs Discussion**
+**Ready to merge: Yes / Yes with fixes / No**
 
-[One sentence explaining the verdict.]
+[One sentence: what must change before this can merge, or why it's clear to go.]
 ```
 
 **Output quality criteria:**
 
 | Level | Criteria |
 |---|---|
-| ✅ PASS | All 9 steps completed; every finding has file:line + suggested fix; report saved to correct path |
-| ⚠️ NEEDS WORK | Missing 1–2 steps OR findings lack file:line references |
+| ✅ PASS | All steps completed (incl. plan alignment check); every finding has file:line + why it matters + fix; report saved to correct path |
+| ⚠️ NEEDS WORK | Missing 1–2 steps OR findings lack file:line references OR "why it matters" is absent |
 | ❌ FAILING | Skipped security or architecture step; no report saved; findings are vague with no actionable suggestions |
 
 ## 6. RESOURCE USAGE
@@ -225,8 +238,9 @@ Before delivering the review, verify:
 
 ☐ Loaded the full code (PR diff / files / branch) before starting?
 ☐ Checked `CLAUDE.md` for project coding standards (or confirmed it's absent)?
+☐ Checked `docs/agent-docs/plans/` for a matching plan doc and noted deviations?
 ☐ Completed all 7 review dimensions (architecture → documentation)?
-☐ Every finding has a file:line reference and a concrete suggested fix?
+☐ Every finding has file:line + "why it matters" + concrete fix?
 ☐ "What's Done Well" section is genuine and specific — not filler?
 ☐ Report saved to `docs/agent-docs/reviews/YYYY-MM-DD-<topic>-review.md`?
 ☐ Notified user with finding counts (N critical / N important / N nice-to-have)?
