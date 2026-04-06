@@ -1,55 +1,55 @@
-# 9-Layer Checklist — Tiêu Chí Đánh Giá Skill
+# 9-Layer Checklist — Skill Evaluation Criteria
 
 ## Layer 0 — Use Case & Trigger Map
-- [ ] Skill giải quyết công việc cụ thể, không quá rộng
-- [ ] Xác định rõ người dùng chính
-- [ ] Có trigger dương (khi nào kích hoạt)
-- [ ] Có trigger âm (khi nào KHÔNG kích hoạt)
+- [ ] Skill solves a specific task, not too broad
+- [ ] Primary user is clearly identified
+- [ ] Positive triggers defined (when to activate)
+- [ ] Negative triggers defined (when NOT to activate)
 
 ## Layer 1 — Metadata
-- [ ] Có YAML frontmatter với `name` và `description`
-- [ ] `description` cụ thể, bám ngôn ngữ người dùng thật
-- [ ] Có trigger phrases (cả tiếng Việt lẫn Anh nếu cần)
-- [ ] Có trigger âm (Do NOT use for...)
-- [ ] Có `version`
-- [ ] Tổng description 50–100 từ
+- [ ] YAML frontmatter with `name` and `description`
+- [ ] `description` is specific, uses real user language
+- [ ] Trigger phrases present (both Vietnamese and English if needed)
+- [ ] Negative trigger present (Do NOT use for...)
+- [ ] `version` present
+- [ ] Description is 50–100 words total
 
 ## Layer 2 — Core SKILL.md
-- [ ] Phần 1: PURPOSE — 2–3 câu
-- [ ] Phần 2: WHEN TO USE — trigger dương + âm
-- [ ] Phần 3: EXPECTED INPUTS — bắt buộc/tuỳ chọn
-- [ ] Phần 4: WORKFLOW — từng bước, chỉ resource
-- [ ] Phần 5: OUTPUT FORMAT — cấu trúc, mẫu
-- [ ] Phần 6: RESOURCE USAGE — khi nào đọc gì
-- [ ] Phần 7: GUARDRAILS — giới hạn
-- [ ] Phần 8: FINAL CHECK — checklist tự kiểm
-- [ ] Dưới 500 dòng / ~3.000 từ
-- [ ] Không chứa tri thức dài nên tách sang references
+- [ ] Section 1: PURPOSE — 2–3 sentences
+- [ ] Section 2: WHEN TO USE — positive + negative triggers
+- [ ] Section 3: EXPECTED INPUTS — required / optional
+- [ ] Section 4: WORKFLOW — step by step, referencing resources
+- [ ] Section 5: OUTPUT FORMAT — structure, template
+- [ ] Section 6: RESOURCE USAGE — when to read which file
+- [ ] Section 7: GUARDRAILS — limits and restrictions
+- [ ] Section 8: FINAL CHECK — self-check checklist
+- [ ] Under 500 lines / ~3,000 words
+- [ ] No long knowledge blocks that should be in references/
 
 ## Layer 3 — References
-- [ ] Có thư mục references/ nếu cần tri thức nền
-- [ ] SKILL.md ghi rõ khi nào đọc file nào
-- [ ] Không trùng nội dung với SKILL.md
+- [ ] references/ directory exists if background knowledge is needed
+- [ ] SKILL.md clearly states when to read each file
+- [ ] No duplicated content with SKILL.md
 
 ## Layer 4 — Examples
 - [ ] ≥1 good example (input → output)
-- [ ] ≥1 anti-example (mẫu xấu + phân tích lỗi)
-- [ ] Khuyến nghị: annotated example
+- [ ] ≥1 anti-example (bad pattern + error analysis)
+- [ ] Recommended: annotated example
 
 ## Layer 5 — Scripts & Tools
-- [ ] Nếu có logic lặp → có script
-- [ ] Script có mục đích rõ ràng
+- [ ] If repetitive logic exists → script is provided
+- [ ] Script has a clear, stated purpose
 
 ## Layer 6 — Assets & Templates
-- [ ] Template tách riêng khỏi references
-- [ ] Nếu skill tạo file → có mẫu trong assets/
+- [ ] Templates separated from references/
+- [ ] If skill produces files → template in assets/
 
 ## Layer 7 — Output Contract & QC
-- [ ] Có quy định cấu trúc đầu ra
-- [ ] Có tiêu chí ĐẠT / CẦN SỬA / KHÔNG ĐẠT
-- [ ] Có self-check checklist 5–7 mục
+- [ ] Output structure is defined
+- [ ] PASS / NEEDS WORK / FAILING criteria present
+- [ ] Self-check checklist of 5–7 items
 
 ## Layer 8 — Governance
-- [ ] Có version number
-- [ ] Khuyến nghị: owner, changelog
-- [ ] Cho cá nhân: chỉ cần version là đủ
+- [ ] Version number present
+- [ ] Recommended: owner, changelog
+- [ ] For personal skills: version alone is sufficient

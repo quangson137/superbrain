@@ -1,25 +1,25 @@
-# Anti-Example: Những Lỗi Khi Fix Skill
+# Anti-Example: Common Mistakes When Fixing a Skill
 
-## ❌ Lỗi 1: Xoá nội dung gốc
-Skill gốc có đoạn hướng dẫn domain-specific. Khi fix, đã xoá mất
-và thay bằng template trống. → Mất tri thức chuyên môn.
+## ❌ Mistake 1: Deleting original content
+The original skill contained domain-specific guidance. During the fix, it was deleted
+and replaced with an empty template. → Domain knowledge is lost.
 
-**Đúng**: Giữ nguyên nội dung, chỉ restructure vào đúng phần.
+**Correct**: Preserve the content, just restructure it into the right section.
 
-## ❌ Lỗi 2: Đổi tên skill
-Skill gốc tên `crm-email-followup`. Khi fix, đổi thành
-`professional-email-writer`. → Phá vỡ liên kết nếu đã có user dùng.
+## ❌ Mistake 2: Renaming the skill
+The original skill was named `crm-email-followup`. During the fix, it was renamed
+to `professional-email-writer`. → Breaks existing references if users already depend on it.
 
-**Đúng**: Giữ nguyên name, chỉ cải thiện description.
+**Correct**: Keep the original name, only improve the description.
 
-## ❌ Lỗi 3: Bịa nội dung chuyên môn
-Skill về quy trình nội bộ công ty. Khi fix, tự sinh thêm
-quy trình không có trong skill gốc. → Sai thông tin.
+## ❌ Mistake 3: Fabricating domain content
+A skill described an internal company process. During the fix, additional
+steps that weren't in the original were invented. → Introduces incorrect information.
 
-**Đúng**: Chỉ sinh cấu trúc (headings, checklist, format).
-Nội dung chuyên môn mới → hỏi người dùng.
+**Correct**: Only generate structure (headings, checklists, formatting).
+For new domain content → ask the user.
 
-## ❌ Lỗi 4: Sửa trực tiếp file gốc
-File gốc nằm trong thư mục read-only. Sửa trực tiếp → lỗi.
+## ❌ Mistake 4: Editing the original file directly
+The original file was in a read-only directory. Editing it directly → error.
 
-**Đúng**: Copy sang /home/claude/, sửa ở đó, xuất ra /mnt/user-data/outputs/.
+**Correct**: Work in a writable location, then present the output to the user.

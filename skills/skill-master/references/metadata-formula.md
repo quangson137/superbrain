@@ -1,6 +1,6 @@
-# Metadata Formula — Cách Viết Description Chuẩn
+# Metadata Formula — How to Write a Good Description
 
-## Công thức
+## Formula
 
 ```yaml
 description: >
@@ -10,27 +10,27 @@ description: >
   Do NOT use for: [anti-trigger 1], [anti-trigger 2].
 ```
 
-## Nguyên tắc
-- 50–100 từ
-- Dùng ngôn ngữ người dùng THẬT (không dùng jargon nội bộ)
-- Liệt kê 3–6 trigger phrases cụ thể
-- Bao gồm cả tiếng Việt lẫn tiếng Anh nếu user base đa ngôn ngữ
-- Luôn có ít nhất 1 trigger âm
-- Hơi "pushy" — liệt kê nhiều tình huống hơn mức tối thiểu để tránh undertrigger
+## Principles
+- 50–100 words
+- Use real user language (no internal jargon)
+- List 3–6 specific trigger phrases
+- Include both Vietnamese and English triggers if the user base is multilingual
+- Always include at least 1 negative trigger
+- Be slightly "pushy" — list more scenarios than the minimum to avoid undertriggering
 
-## Ví dụ yếu → mạnh
+## Weak → Strong examples
 
-❌ Yếu:
+❌ Weak:
 ```yaml
 description: Helps with documents and reports.
 ```
 
-⚠️ Trung bình:
+⚠️ Mediocre:
 ```yaml
 description: Create professional Word documents with formatting.
 ```
 
-✅ Mạnh:
+✅ Strong:
 ```yaml
 description: >
   Use this skill when the user asks to 'create a Word doc',
@@ -40,8 +40,8 @@ description: >
   Do NOT use for: PDFs, spreadsheets, Google Docs, or plain text.
 ```
 
-## Checklist trước khi hoàn thành
-- [ ] Có ≥3 trigger phrases trong dấu nháy đơn?
-- [ ] Có "Do NOT use for" với ≥1 anti-trigger?
-- [ ] Trong khoảng 50–100 từ?
-- [ ] Dùng ngôn ngữ người dùng thật (không jargon)?
+## Pre-completion checklist
+- [ ] ≥3 trigger phrases in single quotes?
+- [ ] "Do NOT use for" with ≥1 negative trigger?
+- [ ] 50–100 words?
+- [ ] Real user language (no jargon)?

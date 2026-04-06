@@ -1,28 +1,28 @@
-# Scoring Rubric — 6 Trục Đánh Giá
+# Scoring Rubric — 6-Axis Evaluation
 
-Mỗi trục 1–5. Tổng tối đa 30.
+Each axis scored 1–5. Maximum total: 30.
 
-| Tổng | Mức |
-|------|-----|
-| 0–12 | Chưa đạt — cần xây lại |
-| 13–18 | Cơ bản — dùng được, thiếu ổn định |
-| 19–24 | Tốt — cần bổ sung vài layer |
-| 25–30 | Trưởng thành — sẵn sàng cho team |
+| Total | Level |
+|-------|-------|
+| 0–12 | Failing — needs to be rebuilt |
+| 13–18 | Basic — usable but unstable |
+| 19–24 | Good — needs a few more layers |
+| 25–30 | Mature — ready for team use |
 
-## 1. Chiến lược (Layer 0)
-1: Không rõ mục đích | 3: Rõ use case, chưa rõ user | 5: Đầy đủ trigger map
+## 1. Strategy (Layer 0)
+1: No clear purpose | 3: Clear use case, user unclear | 5: Full trigger map
 
-## 2. Kích hoạt (Layer 1)
-1: Metadata trống | 3: Có description, thiếu trigger cụ thể | 5: Trigger dương + âm + bám ngôn ngữ thật
+## 2. Activation (Layer 1)
+1: Metadata empty | 3: Description present, triggers vague | 5: Positive + negative triggers using real user language
 
-## 3. Vận hành (Layer 2)
-1: Không workflow | 3: Thiếu 2+ phần trong 8 phần | 5: Đủ 8 phần, workflow chi tiết
+## 3. Operation (Layer 2)
+1: No workflow | 3: Missing 2+ of the 8 sections | 5: All 8 sections, detailed workflow
 
-## 4. Chất lượng (Layer 7)
-1: Không output contract | 3: Có format, thiếu self-check | 5: Đầy đủ contract + self-check + rubric
+## 4. Quality (Layer 7)
+1: No output contract | 3: Format present, self-check missing | 5: Full contract + self-check + rubric
 
-## 5. Tài nguyên (Layer 3–6)
-1: Không có resources | 3: Có references + examples cơ bản | 5: Đủ 4 loại, examples annotated
+## 5. Resources (Layers 3–6)
+1: No resources | 3: Basic references + examples | 5: All 4 types present, examples annotated
 
-## 6. Quản trị (Layer 8)
-1: Không version | 3: Có version + owner | 5: Đầy đủ governance + metrics
+## 6. Governance (Layer 8)
+1: No version | 3: Version + owner | 5: Full governance + metrics
