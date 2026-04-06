@@ -1,82 +1,73 @@
 ---
 name: reviewing-code
-description: Use when reviewing code for quality, security, performance, and correctness — whether reviewing a PR, a specific file, a git diff, or an ad-hoc code snippet. Use this skill whenever the user mentions reviewing code, checking a PR, auditing code quality, or asks "what's wrong with this code".
+description: >
+  Use this skill when the user asks to 'review my code', 'review this PR',
+  'check my pull request', 'audit code quality', "what's wrong with this code",
+  'review this diff', 'kiểm tra code', 'review PR số', 'đánh giá code của tôi',
+  or needs a thorough review covering quality, security, performance, and correctness.
+  Also use when given a branch name, file path(s), or PR number to review.
+  Do NOT use for: explaining code behavior without quality judgment, debugging a
+  specific runtime error, or writing/generating new code.
 argument-hint: PR number, file path(s), git diff, or branch name to review
 model: opus
+version: 1.1.0
 ---
 
 # Code Review
 
-Review code thoroughly across quality, security, performance, and correctness dimensions, then produce a prioritized, actionable report.
+## 1. PURPOSE
+
+Review code thoroughly across quality, security, performance, and correctness dimensions, then produce a prioritized, actionable report. The output is a structured Markdown report saved to `docs/agent-docs/reviews/`.
 
 **Announce at start:** "I'm using the code-review skill to review this code."
 
-## Checklist
+## 2. WHEN TO USE
 
-You MUST complete these steps in order:
+✅ Use when:
+- User asks to review a PR, file, diff, or branch
+- User asks "what's wrong with this code?" or "audit my code"
+- User wants quality, security, or performance feedback on existing code
+- User provides a PR number, file path, branch name, or git diff
 
-1. **Understand context** — identify what is being reviewed (PR, file, diff, branch) and load the code
-2. **Architecture review** — evaluate design, consistency with existing patterns, separation of concerns
-3. **Code inspection** — check naming, function design, error handling, and anti-patterns
-4. **Security audit** — check input validation, auth/authz, data protection, and dependencies
-5. **Performance analysis** — evaluate algorithms, database queries, caching, and resource management
-6. **Testing validation** — assess test coverage, quality, and edge case handling
-7. **Documentation review** — check comments, docstrings, and updated docs
-8. **Write report** — save to `docs/agent-docs/reviews/YYYY-MM-DD-<topic>-review.md`
+❌ Do NOT use for:
+- Explaining what code does without quality judgment (use regular chat instead)
+- Debugging a specific runtime error or exception
+- Writing or generating new code
 
-## Process Flow
+## 3. EXPECTED INPUTS
 
-```mermaid
-flowchart TD
-    A["Understand context<br/>(load code/diff/PR)"]
-    B["Architecture review"]
-    C["Code inspection<br/>(+ anti-pattern detection)"]
-    D["Security audit"]
-    E["Performance analysis"]
-    F["Testing validation"]
-    G["Documentation review"]
-    H["Write prioritized report"]
-    I["Save report"]
+**Required (one of):**
+- PR number (e.g., `#42`)
+- File path(s) to review
+- Git diff or branch name
+- Inline code snippet
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    G --> H
-    H --> I
-```
+**Optional:**
+- Focus area (e.g., "focus on security" or "only check performance")
+- Project context or linked ticket
 
-**The terminal state is the saved report.** After the report is written, notify the user and stop.
+## 4. WORKFLOW
 
-## The Process
+Complete these steps in order:
 
-**Understanding context:**
+**Step 1 — Understand context:**
+- If given a PR number: run `gh pr view <number> --json title,body,files` and `gh pr diff <number>`
+- If given file paths: read each file in full with context from surrounding modules
+- If given a branch: run `git diff main...<branch>` to load all changes
+- Assess scope: number of files changed, type of change (feature/bugfix/refactor/config)
+- Read the PR description or commit message — understanding intent is essential to a good review
 
-- If given a PR number: run `gh pr view <number> --json title,body,files` and `gh pr diff <number>` to load the full context.
-- If given file paths: read each file in full with context from surrounding modules.
-- If given a branch: run `git diff main...<branch>` to load all changes.
-- Assess scope: number of files changed, type of change (feature/bugfix/refactor/config), whether tests are included.
-- Read the PR description or commit message — understanding the intent is essential to a good review.
+**Step 2 — Read project technical docs:**
+Check `CLAUDE.md` for the `TECHNICAL_DOCS_DIRS` variable — it lists architecture docs, coding standards, and conventions. Read those files before proceeding. This ensures the review judges code against the project's actual standards, not generic assumptions. If `TECHNICAL_DOCS_DIRS` is not defined, skip this step.
 
-**Read project technical docs:**
-
-Check `CLAUDE.md` for the `TECHNICAL_DOCS_DIRS` variable — it lists the directories containing architecture docs, coding standards, and conventions for this project. Read the relevant files in those directories before proceeding. This ensures the review judges code against the project's actual standards, not generic assumptions.
-
-If `TECHNICAL_DOCS_DIRS` is not defined in `CLAUDE.md`, skip this step — don't ask the user about it.
-
-**Architecture review:**
-
+**Step 3 — Architecture review:**
 - Does the approach fit the existing patterns in the codebase?
 - Is separation of concerns maintained? Are responsibilities clearly bounded?
 - Are abstractions at the right level — not too generic, not too specific?
 - Does the change introduce unnecessary coupling or circular dependencies?
-- For existing codebases: explore the surrounding code to understand conventions before judging consistency.
+- For existing codebases: explore the surrounding code to understand conventions before judging consistency
 
-**Code inspection:**
-
-Inspect the code for quality issues across these categories:
+**Step 4 — Code inspection:**
 
 *Naming and structure:*
 - Variables and functions have descriptive, intention-revealing names
@@ -97,8 +88,7 @@ Inspect the code for quality issues across these categories:
 | **Duplication** | Logic repeated across files that should be extracted |
 | **Dead Code** | Unreachable branches, unused imports, obsolete feature flags |
 
-**Security audit:**
-
+**Step 5 — Security audit:**
 - **Input validation:** Is user-controlled input validated and sanitized before use?
 - **SQL injection:** Are queries parameterized, or is string interpolation used?
 - **XSS:** Is user input rendered as HTML without escaping (e.g., `innerHTML` with user data)?
@@ -107,29 +97,31 @@ Inspect the code for quality issues across these categories:
 - **Auth/authz:** Are access controls present and applied at the right layer?
 - **Dependencies:** Are new packages well-maintained and free of known vulnerabilities?
 
-**Performance analysis:**
-
+**Step 6 — Performance analysis:**
 - Are algorithms appropriate for the expected data size (O(n²) in a hot path is a red flag)?
 - Are database queries efficient? Are N+1 query patterns present?
 - Is caching used appropriately, or are expensive operations repeated unnecessarily?
 - Are file handles, connections, and other resources closed after use?
 - Are there obvious memory leak patterns (unbounded lists, retained closures)?
 
-**Testing validation:**
-
+**Step 7 — Testing validation:**
 - Are unit tests present for the new/changed logic?
 - Are integration or edge-case tests included where the behavior is non-obvious?
 - Are tests readable — does the test name describe what behavior it verifies?
 - Are tests deterministic (no reliance on time, random values, or external state without mocking)?
 - Is test coverage proportional to the risk of the code being changed?
 
-**Documentation review:**
-
+**Step 8 — Documentation review:**
 - Does complex logic have an explanatory comment (not just restating what the code does)?
 - Are public functions and classes documented (docstrings with Args/Returns/Raises)?
 - Is any user-facing documentation (README, API docs, changelogs) updated if needed?
 
-## Review Report Format
+**Step 9 — Write and save report:**
+- Follow the template in Section 5
+- Save to `docs/agent-docs/reviews/YYYY-MM-DD-<topic>-review.md`
+- Notify user: "Review complete and saved to `docs/agent-docs/reviews/<filename>.md`. Found [N critical / N important / N nice-to-have] issues."
+
+## 5. OUTPUT FORMAT
 
 Every report MUST use this structure:
 
@@ -137,7 +129,7 @@ Every report MUST use this structure:
 # Code Review: [PR title / feature name]
 
 **Date:** YYYY-MM-DD
-**Reviewed by:** Claude (code-review skill)
+**Reviewed by:** Claude (reviewing-code skill)
 **Scope:** [What was reviewed — PR #N / files / branch]
 **Change type:** [Feature / Bugfix / Refactor / Config]
 
@@ -201,17 +193,40 @@ Every report MUST use this structure:
 [One sentence explaining the verdict.]
 ```
 
-## Key Principles
+**Output quality criteria:**
+
+| Level | Criteria |
+|---|---|
+| ✅ PASS | All 9 steps completed; every finding has file:line + suggested fix; report saved to correct path |
+| ⚠️ NEEDS WORK | Missing 1–2 steps OR findings lack file:line references |
+| ❌ FAILING | Skipped security or architecture step; no report saved; findings are vague with no actionable suggestions |
+
+## 6. RESOURCE USAGE
+
+- **`CLAUDE.md`** (`TECHNICAL_DOCS_DIRS`): Read in Step 2 to locate project-specific coding standards
+- **Surrounding modules**: Read in Step 1 to understand conventions before judging consistency
+- **`examples/good-example.md`**: Reference for what a well-structured review looks like
+- **`examples/anti-example.md`**: Reference for patterns to avoid in reviews
+
+## 7. GUARDRAILS
 
 - **Intent first** — understand what the change is trying to do before judging how it does it
-- **Specific and actionable** — every finding must include file, line, and a concrete suggestion
+- **Specific and actionable** — every finding must include file, line, and a concrete suggestion; vague comments like "this could be better" are not findings
 - **Prioritize ruthlessly** — not every issue deserves equal weight; focus on what actually matters
 - **Acknowledge quality** — call out what is done well, not just what needs fixing
 - **No style nitpicking as blockers** — 🟢 issues should never block a merge
 - **One issue per finding** — don't bundle multiple problems under one bullet
+- **Never skip Step 5 (Security)** — security issues must always be checked, even for "small" changes
+- **Never save to a different path** — always use `docs/agent-docs/reviews/YYYY-MM-DD-<topic>-review.md`
 
-## Completion
+## 8. FINAL CHECK
 
-After saving the report, notify the user:
+Before delivering the review, verify:
 
-> "Review complete and saved to `docs/agent-docs/reviews/<filename>.md`. Found [N critical / N important / N nice-to-have] issues."
+☐ Loaded the full code (PR diff / files / branch) before starting?
+☐ Checked `CLAUDE.md` for project coding standards (or confirmed it's absent)?
+☐ Completed all 7 review dimensions (architecture → documentation)?
+☐ Every finding has a file:line reference and a concrete suggested fix?
+☐ "What's Done Well" section is genuine and specific — not filler?
+☐ Report saved to `docs/agent-docs/reviews/YYYY-MM-DD-<topic>-review.md`?
+☐ Notified user with finding counts (N critical / N important / N nice-to-have)?
