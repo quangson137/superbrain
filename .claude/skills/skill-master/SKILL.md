@@ -5,7 +5,6 @@ description: >
   'adapt skill to standard', 'refactor skill', 'create a new skill', 'write a skill', 'help me write a skill', 'is this skill good?',
   'make this skill production-ready', or wants to build/review/fix any skill following the 9-layer Skill Engineering framework.
   Do NOT use for: general prompt review, reviewing code unrelated to skill structure.
-version: 1.1.0
 ---
 
 # SKILL: Skill Master — Create, Review & Fix Skills to the 9-Layer Standard
@@ -155,7 +154,7 @@ flowchart TD
 | Layer | Name | What to check |
 |-------|------|---------------|
 | 0 | Use Case & Trigger Map | What the skill solves, for whom, positive/negative triggers |
-| 1 | Metadata | YAML frontmatter: name, description, version |
+| 1 | Metadata | YAML frontmatter: name, description |
 | 2 | SKILL.md Body | All 8 sections present? Under 500 lines? Clear workflow? Mermaid diagram in WORKFLOW section? |
 | 3 | References | Directory exists? SKILL.md specifies when to read each file? |
 | 4 | Examples | ≥1 good example + ≥1 anti-example? |
@@ -178,11 +177,10 @@ flowchart TD
     C["Fix Layer 7<br/>(Output Contract)"]
     D["Fix Layer 4<br/>(Examples)"]
     E["Fix Layer 3<br/>(References)"]
-    F["Fix Layers 0, 5, 6, 8<br/>(as appropriate)"]
-    G["Compile changelog<br/>(bump minor version)"]
-    H["Re-review & compare<br/>(before/after score)"]
+    F["Fix Layers 0, 5, 6<br/>(as appropriate)"]
+    G["Re-review & compare<br/>(before/after score)"]
 
-    A --> B --> C --> D --> E --> F --> G --> H
+    A --> B --> C --> D --> E --> F --> G
 ```
 
 **Fix Principles:**
@@ -200,7 +198,7 @@ Priority order (most critical first):
      Use this skill when the user asks to '[trigger 1]',
      '[trigger 2]'... Do NOT use for: [negative trigger].
      ```
-   - Keep the original name, add version if missing
+   - Keep the original name
 
 2. **Fix Layer 2 — SKILL.md Body**
    - Identify where the original content belongs in the 8 sections

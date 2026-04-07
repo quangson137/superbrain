@@ -264,7 +264,7 @@ Every report MUST use this structure:
 Before delivering the review, verify:
 
 ☐ Loaded the full code (PR diff / files / branch) before starting?
-☐ Checked `CLAUDE.md` for `## Document Map` section and read listed docs (or confirmed absent)?
+☐ Checked `CLAUDE.md` for `Document Map` section and read listed docs (or confirmed absent)?
 ☐ Checked `docs/agent-docs/plans/` for a matching plan doc and noted deviations?
 ☐ Completed all 7 review dimensions (architecture → documentation)?
 ☐ Every finding has file:line + "why it matters" + concrete fix?

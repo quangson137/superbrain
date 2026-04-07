@@ -18,23 +18,22 @@ Use formal tone. Include subject line.
 # 📋 REVIEW REPORT: email-skill
 
 ## Overview
-- Name: email-skill | Version: none | File count: 1
-- Score: 7/30 — Failing
+- Name: email-skill | File count: 1
+- Score: 6/25 — Failing
 
 ## Layer-by-layer assessment
 | Layer | Name | Status | Notes |
 |-------|------|--------|-------|
 | 0 | Use Case | ❌ | Too broad: "emails and marketing" |
-| 1 | Metadata | ❌ | Description vague, no triggers, no version |
+| 1 | Metadata | ❌ | Description vague, no triggers |
 | 2 | SKILL.md | ❌ | Only 3 lines, missing 7 of 8 sections |
 | 3 | References | ❌ | None |
 | 4 | Examples | ❌ | None |
 | 5 | Scripts | ⬜ | Not required |
 | 6 | Assets | ⬜ | Not required |
 | 7 | Output Contract | ❌ | None |
-| 8 | Governance | ❌ | No version |
 
-## 6-axis score
+## 5-axis score
 | Axis | Score | Notes |
 |------|-------|-------|
 | Strategy | 2/5 | "emails and marketing" too broad |
@@ -42,7 +41,6 @@ Use formal tone. Include subject line.
 | Operation | 1/5 | No workflow |
 | Quality | 1/5 | No output contract |
 | Resources | 1/5 | No resources |
-| Governance | 1/5 | No governance |
 
 ## Top 3 items to fix
 1. Rewrite metadata — Layer 1 — Urgent
@@ -58,11 +56,10 @@ Use formal tone. Include subject line.
 ## Changelog
 | # | Change | Layer | Details |
 |---|--------|-------|---------|
-| 1 | Rewrote metadata | 1 | Added triggers, negative trigger, version |
+| 1 | Rewrote metadata | 1 | Added triggers, negative trigger |
 | 2 | Restructured SKILL.md | 2 | Split into 8 standard sections |
 | 3 | Added output contract | 7 | Format + criteria + final check |
 | 4 | Created examples/ | 4 | 1 good + 1 anti-example |
-| 5 | Bumped version | 8 | → 1.0.0 |
 
 ## Before/after comparison
 | Axis | Before | After | Δ |
@@ -72,7 +69,6 @@ Use formal tone. Include subject line.
 | Operation | 1 | 4 | +3 |
 | Quality | 1 | 4 | +3 |
 | Resources | 1 | 3 | +2 |
-| Governance | 1 | 3 | +2 |
-| **Total** | **7** | **22** | **+15** |
+| **Total** | **6** | **19** | **+13** |
 
-Rating: Failing → Good
+Rating: Failing → Basic
