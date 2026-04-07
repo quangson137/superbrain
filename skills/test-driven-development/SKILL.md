@@ -8,7 +8,6 @@ description: >
   new production code is about to be written. Do NOT use for: reviewing existing tests without
   writing new code, explaining what a test does, or adding coverage to already-complete code
   without running the full Red-Green-Refactor cycle.
-version: 1.0.0
 ---
 
 # Test-Driven Development (TDD)
@@ -122,9 +121,9 @@ Label each phase clearly when presenting work:
 
 ```
 ## [RED] Test: <behavior being tested>
-```go / tsx
+go / tsx
 <test code>
-```
+
 
 ## [Run] go test ./... -run TestXxx -v
 Output:
@@ -133,18 +132,16 @@ Output:
 → Confirmed: fails for the right reason. Proceeding to GREEN.
 
 ## [GREEN] Implementation: <function/type name>
-```go / ts
+go / ts
 <implementation code>
-```
 
 ## [Run] go test ./...
 Output: PASS (N tests)
 → All green. Proceeding to REFACTOR.
 
 ## [REFACTOR] <what changed and why>
-```go / ts
+go / ts
 <refactored code (only if changes made)>
-```
 
 ## [Run] go test ./...
 Output: PASS (N tests)

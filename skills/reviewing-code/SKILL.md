@@ -10,7 +10,6 @@ description: >
   specific runtime error, or writing/generating new code.
 argument-hint: PR number, file path(s), git diff, or branch name to review
 model: opus
-version: 1.4.0
 ---
 
 # Code Review
